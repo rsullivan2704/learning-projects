@@ -1,5 +1,7 @@
 import socket
-# create a socket and connect to a server
+# Create a socket and connect to a server
+# Clients only create and connect
+# No need to bind or listen
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.connect(('localhost', 8888))
 
