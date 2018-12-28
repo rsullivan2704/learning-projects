@@ -1,15 +1,12 @@
-ALPHA = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ '
-LEFT = True
-RIGHT = False
+ALPHA = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.!?,;: '
 
 class CaesarCipher(object):
-    def __init__(self, plain_text:str, shift:int, direction:bool):
+    def __init__(self, plain_text:str, shift:int, is_shift_left:bool):
         self._plain_text = plain_text
         # Normalize the shift to 0 <= shift < len(ALPHA)
         self._shift = shift % len(ALPHA)
-        # Set the direction and negate it if direction == LEFT
-        self._direction = direction
-        if direction == LEFT:
+        # Negate the shift if is_shift_left == True
+        if is_shift_left:
             self._shift *= -1        
 
     def decode(self, encoded_text:str):
@@ -29,7 +26,12 @@ class CaesarCipher(object):
         return result
 
 if __name__ == '__main__':
-    cipher = CaesarCipher('THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG', 3, RIGHT)
+    cipher = CaesarCipher('THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG', 3, True)
+    encoded = cipher.encode()
+    print('Encoded:', encoded)
+    print('Decoded:', cipher.decode(encoded))
+    
+    cipher = CaesarCipher('The quick brown fox jumps over the lazy dog!', 22, True)
     encoded = cipher.encode()
     print('Encoded:', encoded)
     print('Decoded:', cipher.decode(encoded))
