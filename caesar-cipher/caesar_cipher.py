@@ -10,7 +10,7 @@ class CaesarCipher(object):
         if direction == LEFT:
             self._shift *= -1        
 
-    def decode(self, encoded_text):
+    def decode(self, encoded_text:str):
         result = ''
         for char in encoded_text:
             index = (ALPHA.find(char) - self._shift) % len(ALPHA)
